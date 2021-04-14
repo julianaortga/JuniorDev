@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+        
+<struts-config>
+	
+	<!--  Aquí se crean los formularios -->
+	<form-beans>
+		<form-bean name="ingresarForm" type="juniorDev.forms.FormIngresar"></form-bean>
+	</form-beans>
+	
+	<!-- Aqui se colocan las acciones que va a tener el proyecto -->
+	<action-mappings>
+		<action path="/ingresar" 
+				type="juniorDev.actions.ActionsIngresar"
+				name="ingresarForm"
+				scope="request"
+				validate="true"
+				input="/index.jsp">
+				
+		<forward name="ok" path="/index.jsp"></forward>
+		<!-- <forward name="error" path="/error.jsp -->
+		</action>
+		<!-- path: Hace referencia a la url de la acción, ingresar.do. Es la misma que se coloca en el action del JSP
+		 	 type: Es como colocar un import, por ende se tiene que especificar el package y el nombre de la clase
+		 	 name: Es el mismo nombre del formulario <form-bean>
+		 	 scope: Es para manejar la petición http del action (puede ser request-> POST o session ->GET guardar datos)
+		 	 validate: Le indica que esta logica de negocio lleva tratamiento de errores
+		 	 input: Es para referenciarle al action la vista donde se va a mostrar el formulario
+		 -->
+	</action-mappings>
+	
+	<message-resources parameter="util.resources"/>
+</struts-config>
